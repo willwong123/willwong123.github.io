@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>ESlint 3.0 升级指南</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="ESLint 3.0 升级指南在翻译这篇的时候，已经发布了v3.0.1
+ESLint v3.0.0 是第三个大版本了。在这个版本中我们做了几处重大改变，然而，我们相信我们的用户肯定希望这些改变对他们来说改动是尽可能小的。所以这篇指南就是指导你完成这些改动的。
+不再支持Node.js &amp;lt; 4ES">
+  
+
+  <meta property="og:title" content="ESlint 3.0 升级指南"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        ESlint 3.0 升级指南
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-07-07T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-07-08
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="ESLint-3-0-升级指南"><a href="#ESLint-3-0-升级指南" class="headerlink" title="ESLint 3.0 升级指南"></a>ESLint 3.0 升级指南</h1><pre><code>在翻译这篇的时候，已经发布了v3.0.1
+</code></pre><p>ESLint v3.0.0 是第三个大版本了。在这个版本中我们做了几处重大改变，然而，我们相信我们的用户肯定希望这些改变对他们来说改动是尽可能小的。所以这篇指南就是指导你完成这些改动的。</p>
+<h2 id="不再支持Node-js-lt-4"><a href="#不再支持Node-js-lt-4" class="headerlink" title="不再支持Node.js &lt; 4"></a>不再支持Node.js &lt; 4</h2><p>ESLint v3.0.0 已经确定放弃支持低于Node.js v4 版本了。Node.js 0.12 和 Node.js 0.10 现在使处于预留保养阶段，4.0目前是LTS 版本。如果你现在还是用的老版本的话，我们建议尽快升级到最新的Node.js v4 版本。如果你现在无法升级到v4 或者更高的版本，那我们建议你还是使用ESLint v2.x 版本，直到你可以升级Node.js 到Node.js v4 及更高的LTS 版本。</p>
+<p><strong>重要：</strong> 我们将不会再更新 ESLint v2 版本，所有的Bug 和功能改进都将再v3 版本中实现。</p>
+<h2 id="必须的配置文件"><a href="#必须的配置文件" class="headerlink" title="必须的配置文件"></a>必须的配置文件</h2><p>ESLint v3.0.0 现在必须要求要有配置文件才会运行。配置文件可以是以下任一类型的文件：</p>
+<ul>
+<li><code>.eslintrc.js</code>, <code>.eslintrc.json</code>, <code>.eslintrc.yml</code>, <code>.eslintrc.yaml</code>, <code>.eslintrc</code> 任一一个添加到项目根目录中</li>
+<li>命令行后面通过<code>--rule</code> 传递配置</li>
+<li>命令行通过<code>-c</code> 引入配置文件</li>
+<li>用<code>useSpecificConfig</code> 传递配置给<code>CLIEngine</code></li>
+</ul>
+<p>如果ESLint 找不到配置文件的话，将会抛出错误。</p>
+<p>这个改变，主要是因为很多小白用户会疑问，ESLint 啥作用都不起，只是会报告<code>parse errors</code>。而且这个改变对经常使用的用户来说，影响非常小，因为你肯定已经有了配置文件。</p>
+<p><strong>注：</strong> 使用ESLint 的时候，要确定是有配置文件的。当然你也可以在命令行中传入<code>--no-eslintrc</code> 参数，或者在<code>CLIEngine</code> 中设置<code>useEslintrc</code> 为<code>false</code> 来运行没有配置文件的ESLint。</p>
+<p><code>eslint --init</code> 可以创建一个配置文件。</p>
+<h2 id="推荐配置的更新"><a href="#推荐配置的更新" class="headerlink" title="推荐配置的更新"></a>推荐配置的更新</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;extends&quot;: &quot;eslint:recommended&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面这些规则将会被添加到3.0 版本中：</p>
+<ul>
+<li><code>no-unsafe-finally</code> 检测<code>finally</code> 条件分支可能不会跟想象的一样</li>
+<li><code>no-native-reassign</code> 这之前是<code>no-undef</code> 的一部分，被拆出来了。<code>no-native-reassign</code> 规则在你准备修改一个只读的全局变量会报错。</li>
+<li><code>require-yield</code> 检测生成器函数中是否有<code>yield</code> 关键字</li>
+</ul>
+<p>下面的规则将会从3.0 版本中移出：</p>
+<ul>
+<li><code>comma-dangle</code> 由于IE8 已经不再被MS支持了，所以我们也不再支持IE8，所以这条规则将不再使用</li>
+</ul>
+<p>下面的规则在3.0 版本中被修改：</p>
+<ul>
+<li><code>complexity</code> 这个值之前在<code>eslint:recommended</code> 中写死成11了，这样是错误的。在这里会统一使用默认的20作为实际值</li>
+</ul>
+<p><strong>注：</strong> 如果你还是想模拟v2.x 版本中的<code>eslint:recommended</code>，下面配置可以实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;extends&quot;: &quot;eslint:recommended&quot;,</div><div class="line">    &quot;rules&quot;: &#123;</div><div class="line">        &quot;no-unsafe-finally&quot;: &quot;off&quot;,</div><div class="line">        &quot;no-native-reassign&quot;: &quot;off&quot;,</div><div class="line">        &quot;complexity&quot;: [&quot;off&quot;, 11],</div><div class="line">        &quot;comma-dangle&quot;: &quot;error&quot;,</div><div class="line">        &quot;require-yield&quot;: &quot;error&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="更改CLIEngin-executeOnText"><a href="#更改CLIEngin-executeOnText" class="headerlink" title="更改CLIEngin#executeOnText()"></a>更改CLIEngin#executeOnText()</h2><p><code>CLIEngine#executeOnText()</code> 方法被改的更像<code>CLIEngine#executeOnFiles()</code>。在v2.0 版本中<code>CLIEngine#executeOnText()</code> 如果没有文件的话默认是会给出警告的，并且没有办法设置是否输出。但是<code>CLIEngine#executeOnFiles()</code> 没有文件的话默认是不给出警告的，但是可以配置是否显示。在v3.0 版本中<code>CLIEngine#executeOnText()</code> 现在没有文件默认也不会警告，并且可以通过第三个行参（布尔型，<code>true</code> 打开警告，<code>false</code> 则忽略）来配置是否给出警告。</p>
+<p><strong>注：</strong> 如果现在你在项目中像下面这样用<code>CLIEngine#executeOnText()</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result = engine.executeOnText(text, filename);</div></pre></td></tr></table></figure>
+<p>现在则可以用下面的语法达到同样的效果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result = engine.executeOnText(text, filename, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<p>如果不想看到警告的话，第三个参数设置为<code>false</code> 即可。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

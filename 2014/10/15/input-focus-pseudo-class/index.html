@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>input输入框获取焦点样式的兼容性</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="input输入框的focus伪类在ie低版本浏览器中的显示情况今天在检查一个刚做好的登陆页面时，发现在ie7的浏览器下input输入框获取焦点之后并没有获得focus伪类的样式！这下问题来了，肯定是兼容问题！
+:focus伪类介绍看到:focus的说明才突然发现原来这个东西是css2.1里面才提出来">
+  
+
+  <meta property="og:title" content="input输入框获取焦点样式的兼容性"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        input输入框获取焦点样式的兼容性
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-10-14T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-10-15
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="input输入框的focus伪类在ie低版本浏览器中的显示情况"><a href="#input输入框的focus伪类在ie低版本浏览器中的显示情况" class="headerlink" title="input输入框的focus伪类在ie低版本浏览器中的显示情况"></a>input输入框的focus伪类在ie低版本浏览器中的显示情况</h1><p>今天在检查一个刚做好的登陆页面时，发现在ie7的浏览器下input输入框获取焦点之后并没有获得focus伪类的样式！这下问题来了，肯定是兼容问题！</p>
+<h2 id="focus伪类介绍"><a href="#focus伪类介绍" class="headerlink" title=":focus伪类介绍"></a>:focus伪类介绍</h2><p>看到<code>:focus</code>的说明才突然发现原来这个东西是css2.1里面才提出来的，所以在ie6，ie7，ie8(Q)模式下不能兼容也是能解释清楚了！</p>
+<p>那么问题来了，在ie低版本浏览器中怎么解决这个问题？<br>js？</p>
+<h2 id="伪类和伪元素的区分"><a href="#伪类和伪元素的区分" class="headerlink" title="伪类和伪元素的区分"></a>伪类和伪元素的区分</h2><h3 id="before和-before有什么不同"><a href="#before和-before有什么不同" class="headerlink" title=":before和::before有什么不同"></a>:before和::before有什么不同</h3><p><a href="http://www.w3.org/TR/2005/WD-css3-selectors-20051215/#pseudo-elements" target="_blank" rel="external">http://www.w3.org/TR/2005/WD-css3-selectors-20051215/#pseudo-elements</a></p>
+<p><a href="http://www.jb51.net/css/67317.html" target="_blank" rel="external">http://www.jb51.net/css/67317.html</a></p>
+<p><a href="http://www.dreamdu.com/css/pseudo-class_focus/" target="_blank" rel="external">http://www.dreamdu.com/css/pseudo-class_focus/</a></p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

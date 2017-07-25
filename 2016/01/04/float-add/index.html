@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>编程语言中浮点数计算的误差</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="在程序开发过程中，总是会遇到浮点数运算，也是避不开浮点数运算得出的结果出现误差的现象。这个现象也不仅仅只会出现在javascript中，在pythone、Java、php世界上最美的语言也避免不了这个误差。
+在使用规避这个误差的方法时，有必要了解一下为什么会出现这个原因。
+由于在计算机内心里，他只认">
+  
+
+  <meta property="og:title" content="编程语言中浮点数计算的误差"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        编程语言中浮点数计算的误差
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-01-03T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-01-04
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>在程序开发过程中，总是会遇到浮点数运算，也是避不开浮点数运算得出的结果出现误差的现象。这个现象也不仅仅只会出现在javascript中，在pythone、Java、php<del>世界上最美的语言</del>也避免不了这个误差。</p>
+<p>在使用规避这个误差的方法时，有必要了解一下为什么会出现这个原因。</p>
+<p>由于在计算机内心里，他只认识’0’和’1’，才不会理解你们愚蠢的人类的10进制数字。所以当你，运算<code>1+2=3</code>的时候，计算机先给你换算成2进制，也就是<code>01+10=11</code>，等他算好了之后，再将<code>11</code>换算成10进制也就是3。只有整数的情况下是美好的，这也就是我们处理浮点数运算出现误差时的方法，都先换成整数，得出结果后再换成小数。</p>
+<p>上面已经知道，计算机在处理整数运算时是没有问题的，但是小数呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">0.1</span>,</div><div class="line">	b = <span class="number">0.2</span>;</div><div class="line"><span class="built_in">console</span>.log(a+b);	<span class="comment">//result: 0.30000000000000004</span></div></pre></td></tr></table></figure>
+<p>这个就是浮点数运算出来的误差结果。</p>
+<p>原因就在于，计算机计算浮点数的时候，先要把<code>0.1</code>转化为2进制，而计算机却不能够精确的转化到0.1这个十进制的数。<br>所以在计算的时候会出现这种误差结果。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

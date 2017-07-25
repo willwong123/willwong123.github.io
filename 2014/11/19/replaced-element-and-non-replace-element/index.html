@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>替换元素与非替换元素</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="早上过来，照例打开知乎看看有什么新鲜东西。无意中见到一个很简单的提问，我也就点进去看了。问题是这样的：
+
+html页面中的img元素是块级元素还是行内元素？如果是行内元素为什么可以设置宽高，如果是块级元素，为什么多张图片是并排排的？
+
+这一下子让我慌了！往下面看，发现有人指出来了，原来img元素是行">
+  
+
+  <meta property="og:title" content="替换元素与非替换元素"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        替换元素与非替换元素
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-11-18T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-11-19
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>早上过来，照例打开知乎看看有什么新鲜东西。无意中见到一个很简单的提问，我也就点进去看了。问题是这样的：</p>
+<blockquote>
+<p>html页面中的<code>img</code>元素是块级元素还是行内元素？如果是行内元素为什么可以设置宽高，如果是块级元素，为什么多张图片是并排排的？</p>
+</blockquote>
+<p>这一下子让我慌了！往下面看，发现有人指出来了，原来<code>img</code>元素是<strong>行内可替换元素</strong>！</p>
+<p>于是开始了各种查资料，看博客；了解到原来在<code>html</code>元素中，除了行内元素和块级元素分类之外，还是有<strong>可替换元素</strong>和<strong>不可替换元素</strong>两个分类方式。</p>
+<ul>
+<li><strong>可替换元素</strong>：类似于<code>img</code>,<code>canvan</code>,<code>textarea</code>,<code>input</code>这些元素，他们的元素本身是在页面中不占有空间的，就是一个空元素。只是当这些元素引用了特定的属性内容时，浏览器会根据属性给元素一定的尺寸，这些元素才会在页面中占有一定的空间。</li>
+</ul>
+<p>如果在页面中出现只写一个<code>&lt;input /&gt;</code>这种标签，在浏览器中我们是看不到的；但是如果给<code>input</code>添加一个属性<code>type=&quot;text&quot;</code>变成<code>&lt;input type=&quot;text&quot;/&gt;</code>之后，这个元素在浏览器中便会显示出来了！</p>
+<ul>
+<li><strong>不可替换元素</strong>：不可替换的元素就是我们常见的一些页面中会占有默认空间的元素，像<code>p</code>无论你内容有什么，都会在页面中直接显示出来元素的内容。</li>
+</ul>
+<p>html中绝大多数的元素都是不可替换元素！</p>
+<h2 id="W3C的说明"><a href="#W3C的说明" class="headerlink" title="W3C的说明"></a>W3C的说明</h2><p>这段内容是W3C对替换元素在网页中特别的展示效果的说明。</p>
+<blockquote>
+<p>If ‘height’ and ‘width’ both have computed values of ‘auto’ and the element also has an intrinsic width, then that intrinsic width is the used value of ‘width’.</p>
+<p>If ‘height’ and ‘width’ both have computed values of ‘auto’ and the element has no intrinsic width, but does have an intrinsic height and intrinsic ratio; or if ‘width’ has a computed value of ‘auto’, ‘height’ has some other computed value, and the element does have an intrinsic ratio; then the used value of ‘width’ is:(used height) * (intrinsic ratio)</p>
+<p>If ‘height’ and ‘width’ both have computed values of ‘auto’ and the element has an intrinsic ratio but no intrinsic height or width, then the used value of ‘width’ is undefined in CSS 2.1. However, it is suggested that, if the containing block’s width does not itself depend on the replaced element’s width, then the used value of ‘width’ is calculated from the constraint equation used for block-level, non-replaced elements in normal flow.</p>
+<p>Otherwise, if ‘width’ has a computed value of ‘auto’, and the element has an intrinsic width, then that intrinsic width is the used value of ‘width’.</p>
+<p>Otherwise, if ‘width’ has a computed value of ‘auto’, but none of the conditions above are met, then the used value of ‘width’ becomes 300px. If 300px is too wide to fit the device, UAs should use the width of the largest rectangle that has a 2:1 ratio and fits the device instead.</p>
+</blockquote>
+<ul>
+<li>当这个替换元素设定宽度和高度都是<code>auto</code>，替换元素就会使用该元素自身自带的高宽度；</li>
+<li>如果宽度或者高度都是设定为<code>autp</code>，元素中没有自带的宽度，但是有自带高度和比例，那么元素会将自带高度乘以自带的比例来生成该元素的宽度；相反的，如果不知道高度的时候，用宽度乘以比例。</li>
+<li>如果只知道元素的比例，那么该元素的尺寸会强制等于普通文档流中的块级非替换元素的尺寸；</li>
+<li>如果计算出元素的宽度是<code>auto</code>，元素有一个自身宽度，那么宽度就是元素自身的宽度；</li>
+<li>否则，如果上面的情况都没有，并且元素的宽度设定的是<code>auto</code>，那么元素的宽度就设定为<code>300px</code>，如果宽度<code>300px</code>超出屏幕尺寸的话，那么UA将会采用2:1比例下最大的矩形适配屏幕。</li>
+</ul>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element" target="_blank" rel="external">replaced element</a></li>
+<li><a href="http://stackoverflow.com/questions/12468176/what-is-a-non-replaced-inline-element/12468246" target="_blank" rel="external">what si a non-replaced inline element?</a></li>
+<li><a href="http://www.w3.org/TR/CSS2/conform.html#replaced-element" target="_blank" rel="external">replaced element-W3C</a></li>
+<li><a href="http://reference.sitepoint.com/css/replacedelements" target="_blank" rel="external">replaced elements-sitepoint</a></li>
+<li><a href="http://www.w3.org/TR/CSS21/visudet.html#inline-replaced-width" target="_blank" rel="external">Calculating widths and margins</a></li>
+</ul>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

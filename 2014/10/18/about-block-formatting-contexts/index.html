@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>页面布局中的BFC</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="首先，我们都知道在用css进行页面布局的时候，盒模型已经被用烂了。块元素和行内元素的属性也肯定了然于胸。好，看下面一段代码先：
+12345&amp;lt;nav&amp;gt;    &amp;lt;a href=&amp;quot;###&amp;quot;&amp;gt;1&amp;lt;/a&amp;gt;    &amp;lt;a href=&amp;quot;###&amp;">
+  
+
+  <meta property="og:title" content="页面布局中的BFC"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        页面布局中的BFC
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-10-17T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-10-18
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>首先，我们都知道在用css进行页面布局的时候，盒模型已经被用烂了。块元素和行内元素的属性也肯定了然于胸。好，看下面一段代码先：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;nav&gt;</div><div class="line">    &lt;a href=&quot;###&quot;&gt;1&lt;/a&gt;</div><div class="line">    &lt;a href=&quot;###&quot;&gt;2&lt;/a&gt;</div><div class="line">    &lt;a href=&quot;###&quot;&gt;3&lt;/a&gt;</div><div class="line">&lt;/nav&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nav &#123;width:1000px;margin:0 auto;height:30px;background:red;&#125;</div><div class="line">nav a &#123;float:left;width:100px;line-height:28px;border:1px solid blue;color:white;text-align:center;&#125;</div></pre></td></tr></table></figure>
+<p>结果如下：<br><img src="/pic/nav.jpg" alt="导航图片"></p>
+<p>看到这里，那么问题来了！我们知道<code>&lt;a&gt;</code>是行内元素，为什么他在这里能设置宽度行高这些了呢？</p>
+<h2 id="BFC到底是什么东西？"><a href="#BFC到底是什么东西？" class="headerlink" title="BFC到底是什么东西？"></a>BFC到底是什么东西？</h2><p>在我们进行开始网页布局的时候，肯定经常提到文档流。文档流呢正常情况下包括块元素和行内元素。这里的文档流是我们翻译过来的说法，实际上在英文文档中称为<a href="http://www.w3.org/TR/CSS21/visuren.html#normal-flow" target="_blank" rel="external">normal flow</a>，也称普通流。</p>
+<p>在这份文档中可以看到：</p>
+<blockquote>
+<p>Block-level boxes participate in a block formatting context. Inline-level boxes participate in an inline formatting context.</p>
+</blockquote>
+<p>也就是在一个BFC中也会生成一个块级盒子，在IFC中生成行内盒子。百度把它翻译为“<strong>块级格式化上下文</strong>”！还不如直接用英文<strong>BFC</strong>让人更容易理解一点。</p>
+<p>根据语义我们可以把他认为是依次排列的块元素的一种上下文。那么这样理解的话，那他肯定符合两个条件：</p>
+<ul>
+<li>第一普通流；</li>
+<li>第二块级盒子。</li>
+</ul>
+<p>如果是这样的话，那我们在回头看开头的那个例子，好像这样也能解释的通了！这中间到底要什么条件才会产生BFC？</p>
+<h2 id="BFC产生条件"><a href="#BFC产生条件" class="headerlink" title="BFC产生条件"></a>BFC产生条件</h2><p>继续看刚才打开的网页中英文说明。</p>
+<blockquote>
+<p>Floats, absolutely positioned elements, block containers (such as inline-blocks, table-cells, and table-captions) that are not block boxes, and block boxes with ‘overflow’ other than ‘visible’ (except when that value has been propagated to the viewport) establish new block formatting contexts for their contents.</p>
+</blockquote>
+<ul>
+<li>the value of “float” is not “none”,</li>
+<li>the value of “position” is “fixed” or “absolute”,</li>
+<li>the used value of “overflow” is not “visible”,</li>
+<li>the value of “display” is “table-cell”, “table-caption”, or “inline-block”.</li>
+</ul>
+<p>扒开内容便是上面四个条件会产生BFC。所以这个时候再回头看文正开头的例子，应该就能很好的理解了为什么<code>&lt;a&gt;</code>也可以设置宽度行高！由于a设置了<code>float:left;</code>，所以他产生了BFC。</p>
+<h2 id="BFC的属性"><a href="#BFC的属性" class="headerlink" title="BFC的属性"></a>BFC的属性</h2><blockquote>
+<p>In a block formatting context, boxes are laid out one after the other, vertically, beginning at the top of a containing block. The vertical distance between two sibling boxes is determined by the ‘margin’ properties. Vertical margins between adjacent block-level boxes in a block formatting context collapse.</p>
+</blockquote>
+<p>直接翻译过来便是：</p>
+<p>在一个BFC中，盒子依次垂直方向上一个接一个向下排列。两个盒子之间的垂直距离由<code>margin</code>属性决定。相邻的两个盒子垂直间距会产生<code>margin collapse</code>。<em>margin collapse将在下一篇中进行分析。</em></p>
+<blockquote>
+<p>In a block formatting context, each box’s left outer edge touches the left edge of the containing block (for right-to-left formatting, right edges touch). This is true even in the presence of floats (although a box’s line boxes may shrink due to the floats), unless the box establishes a new block formatting context (in which case the box itself may become narrower due to the floats).</p>
+</blockquote>
+<p>翻译过来：</p>
+<p>在一个BFC中的每个盒子都是与最左边的边线接触的（从右向左格式的相反），对于浮动元素也是如此（即使这个盒子可能会因为浮动而被压缩）！除非当这个盒子自身因为带有浮动又变成了一个新的BFC。</p>
+<h2 id="BFC在页面布局中的处理"><a href="#BFC在页面布局中的处理" class="headerlink" title="BFC在页面布局中的处理"></a>BFC在页面布局中的处理</h2><p>搞清楚上面说的内容原理，所以有一些以前经常用但是不太明白具体原因的基本上能解释清楚了。比如说：</p>
+<ul>
+<li>在<a href="http://www.iyunlu.com/view/css-xhtml/55.html" target="_blank" rel="external">那些年一起清除过的浮动</a>中使用的给父元素添加<code>overflow:hidden;</code>或者<code>float:left;</code>等。</li>
+<li>两列或者三列布局的时候，边栏浮动，主体部分不用浮动，不会覆盖浮动元素。</li>
+<li>处理<code>margin collapse</code>。</li>
+</ul>
+<h2 id="BFC适用情况"><a href="#BFC适用情况" class="headerlink" title="BFC适用情况"></a>BFC适用情况</h2><p>其实，从CSS2.1开始提出了BFC这个概念，所以很可惜在IE8之前不适用，但是这么多年下来也知道有办法可以处理这一块的问题，那么就是<code>hasLayout</code>。在ie7以及更早的IE浏览器版本中使用特定的一些属性可以触发元素去<code>have Layout</code>（“拥有布局”），实际上这样看来，其实在CSS2.1提出BFC之前，微软就已经注意到这个问题了！</p>
+<p>所以对于<code>haslayout</code>和<code>BFC</code>，就他们的表现来看，基本上一样。对于IE8+，和现代浏览器适用BFC；对于IE7及更早版本适用<code>hasLayout</code>。</p>
+<p>最后，到这里我才发现以前，页面那么多的兼容性问题，处理的时候不断乱改属性以至于用了某个属性搞定之后那种不明所以。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

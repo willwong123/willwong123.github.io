@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>网页中line-height属性不同单位的取值产生的差异</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="突然想到做下这一篇笔记原因很简单，前两天无意在网上浏览前端资讯。翻到张老师的说说CSS学习中的瓶颈这一篇文章，一开头就直接甩了一个问题砸在我脸上！
+问题：line-height:1.5和line-height:150%的区别是？看到这里我呆了，作为一个10天学会div+css的毕业生来说，这两者有区">
+  
+
+  <meta property="og:title" content="网页中line-height属性不同单位的取值产生的差异"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        网页中line-height属性不同单位的取值产生的差异
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-10-21T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-10-22
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>突然想到做下这一篇笔记原因很简单，前两天无意在网上浏览前端资讯。翻到张老师的<a href="http://www.zhangxinxu.com/wordpress/2012/07/bottleneck-css-study/" target="_blank" rel="external">说说CSS学习中的瓶颈</a>这一篇文章，一开头就直接甩了一个问题砸在我脸上！</p>
+<h2 id="问题：line-height-1-5和line-height-150-的区别是？"><a href="#问题：line-height-1-5和line-height-150-的区别是？" class="headerlink" title="问题：line-height:1.5和line-height:150%的区别是？"></a>问题：<code>line-height:1.5</code>和<code>line-height:150%</code>的区别是？</h2><p>看到这里我呆了，作为一个10天学会div+css的毕业生来说，这两者有区别那是根本不可能的事！你当我没有学过高等数学吗？1.5明明就跟150%一样大小！</p>
+<p>况且在我以前切图的时候，随意切换这两者使用也没有出现什么不同的情况啊！比如说，页面中的一行标题文字需要1.5倍行间距，随便使用哪个都很OK的，完全没有问题！那么问题来了，张老师这么提出来，肯定有问题！！！</p>
+<p>于是我抱着试试看的态度，开始查！</p>
+<p>嘿！这里面还真是有点门道，果然10天出师的太low了。</p>
+<h2 id="———"><a href="#———" class="headerlink" title="———-"></a>———-</h2><p><strong>update:2014-11-7</strong></p>
+<p>在css文档中清楚的写道：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">语法：</div><div class="line">line-height: normal | &lt;number&gt; | &lt;length&gt; | &lt;percentage&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">line-height: normal</div><div class="line">line-height: 3.5    /* &lt;number&gt; values */</div><div class="line">line-height: 3em    /* &lt;length&gt; values */</div><div class="line">line-height: 34%    /* &lt;percentage&gt; values */</div><div class="line">line-height: inherit</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>percentage</strong> Relative to the font size of the element itself. The computed value is this percentage multiplied by the element’s computed font size.</p>
+<p><strong>number</strong>The used value is this unitless <code>&lt;number&gt;</code> multiplied by the element’s font size. The computed value is the same as the specified <code>&lt;number&gt;</code>. In most cases this is the preferred way to set <code>line-height</code> with no unexpected results in case of inheritance.</p>
+</blockquote>
+<h2 id="———-1"><a href="#———-1" class="headerlink" title="———-"></a>———-</h2><h2 id="可继承属性和不可继承属性"><a href="#可继承属性和不可继承属性" class="headerlink" title="可继承属性和不可继承属性"></a>可继承属性和不可继承属性</h2><p>所谓继承属性，也就是父元素设定了某个属性，他的子元素会不会也因此继承到了这个属性；相反不可继承属性就是子元素不会继承父元素设定的一些属性。</p>
+<p>继承属性可能听过也可能没有听过，但是肯定用过。只是在用的时候，并没有去认识到这是一个继承属性。比如说在页面reset.css部分，设定body的属性<code>color：grey</code>，那么网页中所有新建的元素字色都是grey，也就是所有的元素都继承了body元素设定的<code>color</code>属性。</p>
+<p>那到底有哪些属性是属于可继承属性？有朋友整理出来如下：</p>
+<blockquote>
+<p>不可继承的：display、margin、border、padding、background、height、min-height、max-height、width、min-width、max-width、overflow、position、left、right、top、bottom、z-index、float、clear、table-layout、vertical-align、page-break-after、page-bread-before和unicode-bidi。</p>
+<p>所有元素可继承：visibility和cursor。</p>
+<p>内联元素可继承：letter-spacing、word-spacing、white-space、line-height、color、font、font-family、font-size、font-style、font-variant、font-weight、text-decoration、text-transform、direction。</p>
+<p>终端块状元素可继承：text-indent和text-align。</p>
+<p>列表元素可继承：list-style、list-style-type、list-style-position、list-style-image。</p>
+<p>表格元素可继承：border-collapse。</p>
+</blockquote>
+<p>可以看到<code>line-height</code>也是一个可继承属性，其实这个我们应该早就知道了。同样在网页的reset部分可能也有给body设定<code>font</code>属性，<code>font:&lt;font-size&gt;/&lt;line-height&gt; &lt;font-family&gt;</code>。这里设定好了<code>line-height</code>之后，页面所有元素都会继承这个行高！</p>
+<h2 id="line-height的取值"><a href="#line-height的取值" class="headerlink" title="line-height的取值"></a>line-height的取值</h2><p><code>line-height</code>属性取值既可以接受无单位的数值，也可以使用带单位的行高值。</p>
+<p>那么带不带单位会有什么不同呢？举两个栗子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">    &lt;li&gt;行高是1em&lt;/li&gt;</div><div class="line">    &lt;li&gt;行高是带单位的&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>line-height:1.5em</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ul &#123;line-height:1.5em;font-size:16px;&#125;</div><div class="line">li &#123;font-size:14px;&#125;</div></pre></td></tr></table></figure>
+<p>实际运行之后的结果可以看到li元素的行高都是<code>24px=16px*1.5</code>，收到了祖先元素ul的行高值。也就是跟下面的样式效果是一样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ul &#123;font-size:16px;line-height:1.5em;&#125;</div><div class="line">li &#123;font-size:14px;line-height:24px;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>line-height:150%</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ul &#123;line-height:150%;font-size:16px;&#125;</div><div class="line">li &#123;font-size:14px;&#125;</div></pre></td></tr></table></figure>
+<p>可以发现运行结果跟上面的实例相同的。</p>
+<ul>
+<li>使用<code>line-height:1.5</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ul &#123;line-height:1.5;font-size:16px;&#125;</div><div class="line">li &#123;font-size:14px;&#125;</div></pre></td></tr></table></figure>
+<p>这一次的结果有点不一样了，审查元素发现，li的行高变成了<code>21px=14px*1.5</code>。他的最终结果跟下面的样式效果是一样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ul &#123;font-size:16px;line-height:1.5;&#125;</div><div class="line">li &#123;font-size:14px; line-height:21px;&#125;</div></pre></td></tr></table></figure>
+<p>li从祖先元素ul那里只得到了一个换算系数，也就是这个不带单位的行高值1.5！</p>
+<h2 id="答案：line-height-1-5和line-height-150-的区别"><a href="#答案：line-height-1-5和line-height-150-的区别" class="headerlink" title="答案：line-height:1.5和line-height:150%的区别"></a>答案：<code>line-height:1.5</code>和<code>line-height:150%</code>的区别</h2><p>通过上面做的结果，原来<code>line-height:1.5</code>和<code>line-height:150%</code>的确存在很大的区别！而他们的区别就在于给<code>line-height</code>的取值<strong>是否是一个有单位的值</strong>。</p>
+<ul>
+<li><p>当定义了一个有单位的值，如果<code>1em</code>或者<code>20px</code>或者<code>100%</code>的时候，浏览器会将这个元素的行高值计算出来之后传给他的全部后代元素，他的后代元素并不会拿这个有单位的值去重新计算自己的行高！</p>
+</li>
+<li><p>而当定义了一个没有单位的值，这时候他传给后台元素的就是这个纯数字了，也就是换算系数。他的后代元素会拿这个系数乘以自己的字号值得到实际的行高值。</p>
+</li>
+</ul>
+<h2 id="后花园"><a href="#后花园" class="headerlink" title="后花园"></a>后花园</h2><p>搞明白了这些之后，书本上推荐的对于可能包含后代元素的元素使用无单位的行高值也是蛮有道理的！</p>
+<p>到这里在回头看张老师提出来的问题，还真是有区别的，而且区别大很了去！</p>
+<p><strong><em>这跟我10天速成班学到的不一样啊！</em></strong></p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

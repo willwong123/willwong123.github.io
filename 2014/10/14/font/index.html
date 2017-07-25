@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>网页font对排版的影响</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="前段时间，公司UED部门对公司网站页面进行抽查，抽查结果中有一个问题很是奇怪吸引了我的注意力。
+
+那么问题来了，到底是哪里的问题导致的？
+行高？首先，想到的难道是文字的行高不够？审查元素一开，并没有说是行高有什么特殊的地方，尝试着设定一个较大的行高值也没有出现变化！
+接着，放大屏幕很多倍仔细的看了一">
+  
+
+  <meta property="og:title" content="网页font对排版的影响"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        网页font对排版的影响
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-10-13T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-10-14
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>前段时间，公司UED部门对公司网站页面进行抽查，抽查结果中有一个问题很是奇怪吸引了我的注意力。</p>
+<p><img src="/pic/fonts/problem.png" alt="问题截图"></p>
+<p>那么问题来了，到底是哪里的问题导致的？</p>
+<h2 id="行高？"><a href="#行高？" class="headerlink" title="行高？"></a>行高？</h2><p>首先，想到的难道是文字的行高不够？审查元素一开，并没有说是行高有什么特殊的地方，尝试着设定一个较大的行高值也没有出现变化！</p>
+<p>接着，放大屏幕很多倍仔细的看了一下，英文部分是好的，边上的主导航也是没有问题的！难道用着微软雅黑就好了？此时我抱着试试看的态度把这些字调成了微软雅黑的，嘿，还真有用！</p>
+<h2 id="字体？"><a href="#字体？" class="headerlink" title="字体？"></a>字体？</h2><p>换成微软雅黑可行，那么是宋体的原因了？接下来我又试着删除他class样式中的font属性，嘿，也行！！！！</p>
+<p>恍然间，脑洞大开，定睛一看，尼玛原来是<code>font:12px/1.5 tahoma,arial,\5b8b\4f53</code>，tahoma的排在了Arial的前面了，跟reset样式中的font属性<code>font:12px/1.5 arial,tahoma,\5b8b\4f53</code>是相反的。</p>
+<h3 id="这两者到底有什么区别？"><a href="#这两者到底有什么区别？" class="headerlink" title="这两者到底有什么区别？"></a>这两者到底有什么区别？</h3><ul>
+<li>Arial是衬线字体，中文宋体也是衬线字体</li>
+<li>Tahoma是非衬线字体，中文微软雅黑也是非衬线字体</li>
+</ul>
+<p>这里的样式，使这一块的英文字符都采用了非衬线字体类型渲染，而中文字符都是采用的衬线字体类型渲染的。</p>
+<h3 id="无衬线字体和衬线字体"><a href="#无衬线字体和衬线字体" class="headerlink" title="无衬线字体和衬线字体"></a>无衬线字体和衬线字体</h3><p>原来在西文中字体是这样分类的：无衬线字体(sans-serif)和衬线字体(serif)。</p>
+<p><img src="/pic/fonts/font-type.jpg" alt="衬线和非衬线对比"></p>
+<p>同样在东亚方块字体中也存在着衬线体和无衬线体的区分。比如汉字中的宋体就是衬线体，而黑体就是无衬线体。</p>
+<ul>
+<li><p>因为衬线体在笔画始末的地方有额外的装饰，且笔画的粗细会因直横的不同而有所区别，所以强调出字母笔画的走势及前后联系，使得前后文有更好的连续性，更适合走文阅读。即更适合作为正文字体。</p>
+</li>
+<li><p>相反的，无衬线体笔划粗细基本一致，强调的是单个字母。容易造成字母辨识的困扰，常会有来回重读及上下行错乱的情形。因此，适合用作标题之类需要醒目但又不被长时间阅读的地方。</p>
+</li>
+</ul>
+<p><img src="/pic/fonts/example.jpg" alt="字体阅读对比"></p>
+<h3 id="两种字体混排会出现的问题"><a href="#两种字体混排会出现的问题" class="headerlink" title="两种字体混排会出现的问题"></a>两种字体混排会出现的问题</h3><p>找到了这个问题的原因，我也就试着去检查一下两种类型的字体混排的时候会出现什么情况。</p>
+<p>目前，也就只发现了在链接带有下划线的情况下，会出现异常。似乎是因为两种类型的字体在显示情况上会对<code>x-height</code>产生影响。详细的字体方面介绍也都是片面的了解，如果有不对的地方，还希望有人能够提出来！</p>
+<p><em>华丽丽的分割线</em></p>
+<h2 id="———"><a href="#———" class="headerlink" title="———-"></a>———-</h2><p>update:2014-10-30</p>
+<p>下面来看一个最近一直被网友吐槽的栗子：<strong>新浪微博V6改版</strong></p>
+<ul>
+<li><p>第一，我们不谈他们这种card的设计方式是否美观；说实话看起来确实比之前的版本精简了不少，尤其是左侧这一部分乱七八糟的东西全去掉了，让我蛮爽的！</p>
+</li>
+<li><p>第二，新产品出来总是要被喷的，就像之前的版本出来一样。</p>
+</li>
+</ul>
+<p>除了这些，作为一名切图仔，第一件事是右键扒开代码瞧瞧，到底什么地方让人不爽！确实有的时候看的我眼睛难受！！！</p>
+<p><img src="/pic/fonts/weibo.png" alt="微博截图"></p>
+<p>看到这个地方，<code>font:12px/1.3 &#39;Arial&#39;,&#39;Microsoft YaHei&#39;</code>！作为一名有情怀的前端工程师，我坐不住了！微博上大段大段的文字内容用这么小的字用这种字体，难道你们看着不累，难道是我打开的方式有问题，难道你们不懂得什么叫优雅，什么叫情怀，什么叫适合阅读！</p>
+<p>敢问贵公司缺前端人员吗？<code>reset</code>部分这样写好吗？难道你们还没有工程化？别人家现在都用<code>normalize.css</code>啦！</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

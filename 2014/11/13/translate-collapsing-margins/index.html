@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>外边距折叠（译）</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="本文译自Here
+首先，我们来看一下外边距折叠是什么意思，他们对页面如何产生影响。
+W3C对collapsing margins的定义是下面这样子：
+
+“In this specification, the expression collapsing margins means that adjoi">
+  
+
+  <meta property="og:title" content="外边距折叠（译）"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        外边距折叠（译）
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-11-12T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-11-13
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p><em>本文译自<a href="http://www.sitepoint.com/web-foundations/collapsing-margins/" target="_blank" rel="external">Here</a></em></p>
+<p>首先，我们来看一下外边距折叠是什么意思，他们对页面如何产生影响。</p>
+<p>W3C对<a href="http://www.w3.org/TR/CSS21/box.html#collapsing-margins" target="_blank" rel="external">collapsing margins</a>的定义是下面这样子：</p>
+<blockquote>
+<p>“In this specification, the expression collapsing margins means that adjoining margins (no non-empty content, padding, or border areas, or clearance separate them) of two or more boxes (which may be next to one another or nested) combine to form a single margin.”</p>
+</blockquote>
+<p>简单的讲就是，当两个元素在垂直方向上接触的时候，只有较大的外边距值会产生作用，而较小的外边距值就会折叠成0；而当一个元素有一个负的外边距的时候，两个元素之间的外边距是两者的外边距值的和；如果两个元素的外边距都是负值时，更小的那个值会产生作用。当然上面的定义只发生在嵌套元素和相邻元素之间。</p>
+<p>下面几种情况下就不会出现外边距折叠：</p>
+<ul>
+<li>浮动元素</li>
+<li>绝对定位元素</li>
+<li><code>inline-block</code>元素</li>
+<li>包含<code>over-flow</code>属性但是值不是<code>visible</code>的元素（该元素不会跟其子元素发生外边距折叠）</li>
+<li>清除过的元素（该元素的顶部外边距不会跟他们的父元素底部外边距折叠）</li>
+<li>根元素</li>
+</ul>
+<p>概念掌握起来还是有点麻烦的，所以下面来举几个栗子。</p>
+<h2 id="相邻元素的外边距折叠"><a href="#相邻元素的外边距折叠" class="headerlink" title="相邻元素的外边距折叠"></a>相邻元素的外边距折叠</h2><p>两个普通文档流中的相邻块级元素垂直方向上的外边距将只有较大的值生效，较小的值将被折叠为0。一个栗子，一个元素有个25像素的底部外边距，紧邻着它的下一个元素有一个20像素的顶部外边距。那么这两个元素之间将会只有一个25像素的间距，而不是45（25+20）像素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">	margin:0 0 25px 0;</div><div class="line">	background:red;</div><div class="line">&#125;</div><div class="line">p &#123;</div><div class="line">	margin:20px 0 0 0;</div><div class="line">	background:grey;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/pic/margin-collapse/css-box-model_collapsing-margins.png" alt="margin-collapse"></p>
+<p>从上图中可以看出来，两个元素之间的间距只有<code>25px</code>，较小的外边距被折叠为0了。如果上面的这个例子中两者的外边距都是<code>20px</code>的话，那么这个距离将也只是<code>20px</code>。</p>
+<p>这里也会有一种情况会出现偏差：当一个元素有一个负的顶部或者底部外边距，此时正负两个外边距值相加得到的值将会被当做最终的外边距，下面有一个例子来说明这种情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">	margin: 0 0 25px 0;</div><div class="line">	background:red;</div><div class="line">&#125;</div><div class="line">p &#123;</div><div class="line">	margin: -20px 0 0 0;</div><div class="line">	background:grey;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>h1</code>的底部外边距是一个正值，而<code>p</code>的顶部外边距是一个负值。在这种情况下，两个元素之间的外边距是两个值的和<code>25px</code> + <code>(-20px)</code> = <code>5px</code>。</p>
+<p>如果计算出来的结果是一个负值的话，那么将会影响一个元素覆盖到另一个元素上面去。我们可能会说这个负的外边距把元素往相反的方向推了。</p>
+<h2 id="父元素和子元素之间的外边距折叠"><a href="#父元素和子元素之间的外边距折叠" class="headerlink" title="父元素和子元素之间的外边距折叠"></a>父元素和子元素之间的外边距折叠</h2><p>上面我们都是说的两个相邻元素之间的影响，但是这样的处理方式同样适用于子元素和父元素之间的接触。这里的“<strong>接触</strong>”，特指在两个元素之间不存在内补丁，边框或者内容存在。看下面这个例子，一个父元素包含一个子元素，子元素设定了顶部外边距：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  margin: 0;</div><div class="line">  background: #cff;</div><div class="line">&#125;</div><div class="line">div &#123;</div><div class="line">  margin: 40px 0 25px 0;</div><div class="line">  background: #cfc;</div><div class="line">&#125;</div><div class="line">p &#123;</div><div class="line">  margin: 20px 0 0 0;</div><div class="line">  background: #cf9;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的css样式中，我们给<code>p</code>元素设定了一个顶部外边距。下面的这段html代码中，可以看到<code>p</code>元素是<code>div</code>元素的子元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;Heading Content&lt;/h1&gt;</div><div class="line">&lt;div&gt;</div><div class="line">  &lt;p&gt;Paragraph content&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>这段样式运行的结果如下：</p>
+<p><img src="/pic/margin-collapse/css-box-model_collapsing-margins2.png" alt="margin-collapse2"></p>
+<p>一开始我们可能会认为<code>div</code>元素跟顶部距离<code>40px</code>，<code>p</code>元素跟<code>div</code>元素又有一个<code>20px</code>的距离，所以段落文字会跟头部标题之间间隔<code>60px</code>。同样，我们也会认为<code>div</code>的上半部分会出现自身元素设定的背景颜色。但是这些都没有发生，因为上图中我们看到，这两个元素的外边距一起构成了一个外边距，并且只有更大的那个值被应用（在相邻的元素当中）。</p>
+<p>事实上，如果这个<code>div</code>元素没有顶部的外边距，而<code>p</code>元素有一个<code>40px</code>的<code>margin-top</code>，将会实现同样的效果。这里<code>p</code>元素的<code>margin-top:40px</code>影响到<code>div</code>元素的顶部外边距，并且把<code>div</code>元素向下推了<code>40px</code>，把<code>p</code>元素贴着它顶部放置，所以也就看不到<code>div</code>元素的背景颜色了。</p>
+<p>如果想要让两个外边距都有效的，并且让<code>div</code>元素的背景能显示在<code>p</code>元素上，这时候就需要添加一个<code>border</code>或者<code>padding</code>来阻止外边距折叠了。如果我们只是给<code>div</code>添加一个简单的顶部<code>border</code>，就能实现上述的效果的了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  margin: 0;</div><div class="line">  background: #cff;</div><div class="line">&#125;</div><div class="line">div &#123;</div><div class="line">  margin: 40px 0 25px 0;</div><div class="line">  background: #cfc;</div><div class="line">  border-top: 1px solid #000;</div><div class="line">&#125;</div><div class="line">p &#123;</div><div class="line">  margin: 20px 0 0 0;</div><div class="line">  background: #cf9;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/pic/margin-collapse/css-box-model_collapsing-margins3.png" alt="margin-collapse3"></p>
+<p>在上图中，我们可以看到<code>div</code>元素仍然是距离顶部标题<code>40px</code>，但是段落区域也被向下推开了<code>20px</code>，并且<code>div</code>的背景颜色也能够现实出来一部分了。（通过添加边框实现）</p>
+<p>如果我们不想要边框出现在网页设计中，那么我们只需要添加一个<code>1px</code>的内补丁就可以达到同样的效果了。注意，这里的边框和内补丁只能添加到父元素上，如果添加到内部子元素上是不能阻止外边距折叠效果的，因为子元素的外边距在盒模型中是在边框外边的。</p>
+<p>上面的栗子只展示了只有一个父元素和只有一个子元素的情况，如果是多个子元素（相邻元素）同样都适合这样的方法：所有的外边距都会变成只有一个外边距。当然，这里不仅仅是顶部的外边距，底部的外边距同样适用！可以看下面这个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">div &#123;</div><div class="line">  margin: 10px;</div><div class="line">&#125;</div><div class="line">.a &#123;</div><div class="line">  background: #777;</div><div class="line">&#125;</div><div class="line">.b &#123;</div><div class="line">  background: #999;</div><div class="line">&#125;</div><div class="line">.c &#123;</div><div class="line">  background: #bbb;</div><div class="line">&#125;</div><div class="line">.d &#123;</div><div class="line">  background: #ddd;</div><div class="line">&#125;</div><div class="line">.e &#123;</div><div class="line">  background: #fff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;a&quot;&gt;</div><div class="line">	&lt;div class=&quot;b&quot;&gt;</div><div class="line">		&lt;div class=&quot;c&quot;&gt;</div><div class="line">			&lt;div class=&quot;d&quot;&gt;</div><div class="line">				&lt;div class=&quot;e&quot;&gt;the vertical margins collapse but the horizontal margins don&apos;t. the vertical margins also collapse in IE because the elements don&apos;t have a layout.&lt;/div&gt;</div><div class="line">			&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>上面代码的结果便是如下图所示:</p>
+<p><img src="/pic/margin-collapse/css-box-model_collapsing-margins4.png" alt="margin-collapse4"></p>
+<p>从上图中我们可以看到，我们这个CSS的效果有点神奇！所有的垂直方向上的外边距都被折叠成了<code>10px</code>。通过各元素的背景颜色看出来，垂直方向外边距跟水平方向上的外边距不一样，水平外边距都是可见的，而垂直方向上都是不可见的。这整个块级元素将在页面普通流中与上面的元素相隔<code>10px</code>。</p>
+<p>这里我们简单的修改一下代码，给每个元素添加一个边框，就能阻止全部的外边距折叠了。当然如果不想要出现边框的话，只需要改成<code>9px</code>的margin外加<code>1px</code>的padding便能得到我们想要的效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">div &#123;</div><div class="line">	margin:9px;</div><div class="line">	padding:1px ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改之后的效果如下：</p>
+<p><img src="/pic/margin-collapse/css-box-model_collapsing-margins5.png" alt="margin-collapse5"></p>
+<p>当然这些实例必须要考虑在IE下面的效果，如果在示例4中的元素在IE下触发布局的话，结果就可能是示例5的了。不过，当我们给他们添加了一个值不为<code>visible</code>的<code>overflow</code>属性，就能实现效果了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>尽管外边距折叠的概念一开始是有些不直观的，但是在多层嵌套的元素中的效果还是令人满意的。就像上面说的，如果需要阻止外边距折叠的效果，也有一些简单的方法。</p>
+<hr>
+<p><em>以下部分是个人见解</em></p>
+<h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p>在<a href="http://www.cnblogs.com/winter-cn/archive/2012/11/16/2772562.html" target="_blank" rel="external">winter</a>老师的博客中指出来《CSS 设计指南（第三版）》中有一部分存在一定的错误！</p>
+<p>温老湿说<code>margin-collapsing</code>与方向无关，并且举了一个只有在IE下可看例子，并且这个栗子呢在IE下还真是有效果的！不过使用了一个IE独有的属性<code>writing-mode:tb-rl;</code>这样其实就使得页面的普通文档流改变了方向。正常情况下，我们的页面普通流都是从左往右，从上到下的，也就是<code>writing-mode:lr-tb;</code>。改成<code>writing-mode:tb-rl;</code>之后，页面普通流就变成了从上到下，从右到左的了。</p>
+<p><img src="/pic/margin-collapse/writing-mode.png" alt="writing-mode"></p>
+<p>所以说，温老湿的意思是一个文字游戏，看起来的确是水平方向上的外边距被折叠了。但是转念一想呢，这个时候的页面中的元素垂直方向好像就变成了横着的了。（好像蛮绕人的，所以是这里的翻译也是有点问题。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;green&quot; style=&quot;background:lightgreen;&quot;&gt;1&lt;/div&gt;</div><div class="line">&lt;div id=&quot;blue&quot; style=&quot;background:lightblue;&quot;&gt;2&lt;/div&gt;</div><div class="line">&lt;div id=&quot;red&quot; style=&quot;background:pink;&quot;&gt;3&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#green &#123;</div><div class="line">    margin:10px 10px 10px 10px</div><div class="line">&#125;</div><div class="line">#blue &#123;</div><div class="line">    margin:10px 10px 10px 10px</div><div class="line">&#125;</div><div class="line">#red &#123;</div><div class="line">    margin:10px 10px 10px 10px</div><div class="line">&#125;</div><div class="line">body &#123;</div><div class="line">    writing-mode:tb-rl;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="/pic/margin-collapse/IE-writing-mode-effect.png" alt="IE-writing-mode-effect.png"></p>
+<p>这样可能更加的直观一点，可以看到这种模式下面，块元素都变成顺时针转动90°的效果了。这时候块元素的垂直方向的外边距也就是应该被顺时针转动90°的，也就变成了横着的方向了。</p>
+<p>因为，在W3C的说明文档中很清楚的写着：</p>
+<blockquote>
+<p><strong>Horizontal margins never collapse.</strong></p>
+</blockquote>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>ESlint 3.0正式发布</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="ESLint v3.0.0 正式发布在翻译这篇的时候，已经发布了v3.0.1
+我们最近发布了ESLint v3.0版本，这是一个大版本更新。这次更新新增了一些新特性，同时也修复了先前版本的一些bug。当然，这次大版本升级有些重大改变，所以请务必仔细阅读下文。
+由于这些重大改变会给一些用户带来问题，所">
+  
+
+  <meta property="og:title" content="ESlint 3.0正式发布"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        ESlint 3.0正式发布
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-07-07T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-07-08
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="ESLint-v3-0-0-正式发布"><a href="#ESLint-v3-0-0-正式发布" class="headerlink" title="ESLint v3.0.0 正式发布"></a>ESLint v3.0.0 正式发布</h1><pre><code>在翻译这篇的时候，已经发布了v3.0.1
+</code></pre><p>我们最近发布了ESLint v3.0版本，这是一个大版本更新。这次更新新增了一些新特性，同时也修复了先前版本的一些bug。当然，这次大版本升级有些重大改变，所以请务必仔细阅读下文。</p>
+<p>由于这些重大改变会给一些用户带来问题，所以我们创建一个[迁移指南][link]，其中你可以看到该执行的一些步骤。虽然不是所有用户都会受影响，但是还是建议大家都读一下。</p>
+<h2 id="注意⚠"><a href="#注意⚠" class="headerlink" title="注意⚠"></a>注意⚠</h2><p>下面这些重大改变，务必知晓</p>
+<h3 id="Node-js-gt-4"><a href="#Node-js-gt-4" class="headerlink" title="Node.js &gt;= 4"></a>Node.js &gt;= 4</h3><p>ESLint v3.0只能运行在Node.js 4.0及以上版本。以后，我们将只支持LTS版本的Node.js，并且定期删除较老版本的支持。所以，v0.10和v.0.12在今年年底的时候，将都不在我们的考虑范围内。但愿这个改变不会影响到非常多的用户。</p>
+<p>如果你还是想运行在Node.js&lt;4 的版本上的话，那么我们建议你还是使用ESLint v2版本。</p>
+<h3 id="推荐配置更新"><a href="#推荐配置更新" class="headerlink" title="推荐配置更新"></a>推荐配置更新</h3><p>在<code>eslint:recommended</code> 中新增了一些我们认为对所有人都有用的规则。具体的可以查看[迁移指南][link]。</p>
+<h3 id="不可少的配置文件"><a href="#不可少的配置文件" class="headerlink" title="不可少的配置文件"></a>不可少的配置文件</h3><p>对小白用户来说，如果我没有配置文件，ESLint 啥都不做，很让人费解。虽然，我们之前这样做是为了保证可配置性，但我们收到了非常多小白用户的反馈，表示不知道发生了啥。基于这方面的考虑，我们决定将配置文件设为必须的，否则将不再执行。并且会在它找不到配置文件或者在命令行中没有配置信息的时候，输出错误信息。更多有用信息查看[迁移指南][link]。</p>
+<h2 id="重要改变"><a href="#重要改变" class="headerlink" title="重要改变"></a>重要改变</h2><ul>
+<li>添加<code>require-yield</code> 规则到<code>eslint:recommended</code> 中</li>
+<li>找不到配置文件将报错</li>
+<li>更新<code>eslint:recommended</code></li>
+<li>不再支持node &lt; 4</li>
+<li><code>eslint-recommended</code> 中的complexity使用默认值</li>
+</ul>
+<h3 id="增强功能"><a href="#增强功能" class="headerlink" title="增强功能"></a>增强功能</h3><ul>
+<li><code>no-regex-spaces</code> 检查正则表达式</li>
+<li>新增IIFE 缩进规则</li>
+<li>修改<code>no-unused-var</code> 规则</li>
+<li><code>prefer-const</code> 自动修复</li>
+<li><code>arrow-parens</code> 自动修复</li>
+</ul>
+<h3 id="Bug修复"><a href="#Bug修复" class="headerlink" title="Bug修复"></a>Bug修复</h3><p>修复了一系列Bugs，不详述。</p>
+<p>[link]: <a href="http://www.metoct.com/blog/2016/07/08/ESLint-migration-guide.html">http://www.metoct.com/blog/2016/07/08/ESLint-migration-guide.html</a> ‘migration guide’</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

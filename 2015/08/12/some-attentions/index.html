@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>最近遇到的小问题</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="以下是最近遇到的小问题，记录下来
+页面中添加了锚点，点击就滚动到相应位置去。当第一次点击之后，页面滚动一下，结果就会出现多了40像素空白；如果直接点击比较靠后的锚点，页面没法准确定位。
+其实是一个问题，就是定位获取的offset().top不准确了。
+原因有两个：
+顶部的导航条变成了绝对定位页面有一">
+  
+
+  <meta property="og:title" content="最近遇到的小问题"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        最近遇到的小问题
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-08-11T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-08-12
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>以下是最近遇到的小问题，记录下来</p>
+<p>页面中添加了锚点，点击就滚动到相应位置去。当第一次点击之后，页面滚动一下，结果就会出现多了40像素空白；如果直接点击比较靠后的锚点，页面没法准确定位。</p>
+<p>其实是一个问题，就是定位获取的<strong>offset().top</strong>不准确了。</p>
+<p>原因有两个：</p>
+<h3 id="顶部的导航条变成了绝对定位"><a href="#顶部的导航条变成了绝对定位" class="headerlink" title="顶部的导航条变成了绝对定位"></a>顶部的导航条变成了绝对定位</h3><p>页面有一个效果是，当页面滚动导致导航条看不到了，就让导航条<strong>fixed</strong>在窗口顶部；所以当点击第一次之后，稍微滚动一下，第二次定位就会出现导航条高度的误差。</p>
+<h3 id="页面中图片进行了懒加载"><a href="#页面中图片进行了懒加载" class="headerlink" title="页面中图片进行了懒加载"></a>页面中图片进行了懒加载</h3><p>由于设置图片懒加载的时候，为给图片<strong>img</strong>标签设置高度属性，导致懒加载的图片没有高度，所以直接点击靠后的锚点，出现了高度塌陷。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

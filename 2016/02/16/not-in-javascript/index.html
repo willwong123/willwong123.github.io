@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>认识Javascript中的位运算(~)</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="javascript中少有的跟二进制有关的运算，在javascript中用~来表示位运算按位非 not运算。
+一共可以分为三步：
+
+将数字换算成32位的2进制码
+求得这个2进制数的32位反码
+将新的二进制转换成浮点数
+
+123let num1 = 2; 		// 二进制为 0000000000000">
+  
+
+  <meta property="og:title" content="认识Javascript中的位运算(~)"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        认识Javascript中的位运算(~)
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-02-15T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-02-16
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>javascript中少有的跟二进制有关的运算，在javascript中用<code>~</code>来表示位运算<strong>按位非 not运算</strong>。</p>
+<p>一共可以分为三步：</p>
+<ol>
+<li>将数字换算成32位的2进制码</li>
+<li>求得这个2进制数的32位反码</li>
+<li>将新的二进制转换成浮点数</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let num1 = 2; 		// 二进制为 00000000000000000000000000000010</div><div class="line">let num2 = ~num1; 	// 取反码为 11111111111111111111111111111101</div><div class="line">console.log(num2); 	// 由这个二进制转化后的真值 按位取反加1得 10000000000000000000000000000011 =&gt; -3</div></pre></td></tr></table></figure>
+<p>反码：正数的反码不变；负数的反码，符号位不变，其他位取反。</p>
+<p>补码：正数的补码不变；负数的补码，在其反码的基础上加1。同时，由补码求真值的时候，为逆运算，同样为按位取反加1。</p>
+<p>负数在电脑中存储的时候，保存的是该二进制数的补码</p>
+<p>补码转为真值的时候，当为负值的时候，进行按位取反加1；正值则不需要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let num3 = -2; 		// 二进制为 11111111111111111111111111111110</div><div class="line">let num4 = ~num3; 	// 取反码为 00000000000000000000000000000001</div><div class="line">console.log(num2); 	// 由这个二进制转化后的真值 1</div></pre></td></tr></table></figure>
+<p>其实按位非运算的表象就是：</p>
+<pre><code>数字取相反数，再减1。
+</code></pre><p>在执行位运算的时候，会先执行一下<code>Number()</code>方法，将<code>~</code>后面的转化为数字。然后再执行位运算。</p>
+<p>在javascript中的位运算在一些特殊的场景下用来转换判断<code>Boolean</code>类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">let string = &quot;text&quot;;</div><div class="line"></div><div class="line">string.indexOf(&quot;te&quot;) // 0</div><div class="line">~string.indexOf(&quot;te&quot;) // -1</div><div class="line">!!~string.indexOf(&quot;te&quot;) // true</div><div class="line"></div><div class="line">string.indexOf(&quot;ex&quot;) // 1</div><div class="line">~string.indexOf(&quot;ex&quot;) // -2</div><div class="line">!!~string.indexOf(&quot;ex&quot;) // true</div><div class="line"></div><div class="line">string.indexOf(&quot;ax&quot;) // -1</div><div class="line">~string.indexOf(&quot;ax&quot;) // 0</div><div class="line">!!~string.indexOf(&quot;ax&quot;) // false</div></pre></td></tr></table></figure>
+<p>另外，还可以将<code>Boolean</code>类型的值转化为数字:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">console.log(true) 		// true</div><div class="line">console.log(~true) 		// -2</div><div class="line">console.log(~~true) 	// 1</div><div class="line"></div><div class="line">console.log(false) 		// false</div><div class="line">console.log(~false) 	// -1</div><div class="line">console.log(~~false) 	// 0</div></pre></td></tr></table></figure>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

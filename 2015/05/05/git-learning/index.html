@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>git 知识点学习</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="git概念理解工作区和缓存区
+工作区工作区就是你现在编辑文件的区域，如果你改变了文件，但是一直没有进行git add，那么你更改的记录全部都是保存在的工作区。
+
+缓存区缓存区就是修改了文件，并且进行了git add命令，此时文件的更改状态已经提交到了缓存区。缓存区可以保存很多次的更改。只要你不进行g">
+  
+
+  <meta property="og:title" content="git 知识点学习"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        git 知识点学习
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-05-04T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-05-05
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="git概念理解"><a href="#git概念理解" class="headerlink" title="git概念理解"></a>git概念理解</h2><h3 id="工作区和缓存区"><a href="#工作区和缓存区" class="headerlink" title="工作区和缓存区"></a>工作区和缓存区</h3><ul>
+<li><p><strong>工作区</strong><br>工作区就是你现在编辑文件的区域，如果你改变了文件，但是一直没有进行<code>git add</code>，那么你更改的记录全部都是保存在的工作区。</p>
+</li>
+<li><p><strong>缓存区</strong><br>缓存区就是修改了文件，并且进行了<code>git add</code>命令，此时文件的更改状态已经提交到了缓存区。缓存区可以保存很多次的更改。只要你不进行<code>git commit</code>那么本地文件修改的内容就不会再远程服务器上看到。</p>
+</li>
+<li><p><strong>当前分支</strong><br>当使用了<code>git commit</code>命令一次性提交缓存区的改动之后，改动后的文件就被提交到了本地分支上去了。</p>
+</li>
+</ul>
+<h2 id="git-checkout使用"><a href="#git-checkout使用" class="headerlink" title="git checkout使用"></a>git checkout使用</h2><p>还原到提交之前的样子</p>
+<p>分下面两种情况：</p>
+<ul>
+<li>还原还没有提交到缓存区的文件，就是没有进行<code>git add .</code>命令的时候</li>
+<li>还原已经提交到缓存区的文件，又进行了修改，这时可以还原到之前一次<code>git commit</code>提交缓存区的状态</li>
+</ul>
+<p>语法：<code>git checkout -- filename</code></p>
+<p>例如这里的：<code>git checkout -- git-learning.md</code></p>
+<p>注意，这里的<code>--</code>是必须要带上的，不然就变成了创建新分支了！</p>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p><code>git log</code>可以查看最近到最远git的提交记录。<code>git log --pretty=oneline</code>可以将查看到的log排列在一行当中，最前面一长串的字符串是git的版本号，是git生成的16进制的版本号。这样就不会跟svn上的数字一样，会发生多人修改发生冲突了。</p>
+<h2 id="git-reset使用"><a href="#git-reset使用" class="headerlink" title="git reset使用"></a>git reset使用</h2><p><code>git reset</code>可以使已经提交到缓存区的改动退回到工作区，也就是无论你之前进行了多少次<code>git add</code>，只要你没有进行<code>git commit</code>，那么你都可以进行<code>git reset HEAD filename</code>将这些提交的改动退回到没有<code>commit</code>的状态！用<code>git status</code>查看可以看到工作区的修改都还在，但是缓存区是干净的了！</p>
+<p>如果你突然觉得这些工作区的改动都不再需要了，那么只要进行上面学到的<code>git checkout -- filename</code>就可以把你刚刚执行多次的改动全部清空，这时候用<code>git status</code>查看一下，可以看到工作区都是干净的了！</p>
+<p>另外，<code>git reset</code>还能用来在多个版本中切换，比如有一个文件你都已经push上去了，这时候发现更改提交的代码并不能解决问题，需要还原到上一个版本，这时候只需要执行<code>git reset --hard HEAD^</code>就能切换到上一个版本了。同理，<code>HEAD^^</code>是上两个版本,<code>HEAD^^^</code>是上三个版本，<code>HEAD~100</code>上100个版本。</p>
+<p>需要注意的是：这里的<code>HEAD</code>是指当前的版本，如果你把<code>git</code>窗口关掉了，并且关机第二天才想起来昨天改错的，此时就需要使用<code>git reflog</code>命令查看git命令历史，然后进行<code>git reset --hard commit-id</code>进行版本恢复。这里的<code>commit-id</code>就是查看日志中的版本id号。</p>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><p><code>git branch</code>查看分支，git中的分支概念跟svn中的创建分支差不多，不同的是git创建一个分支只需要一个命令。然后你就可以再你创建的这个分支中进行开发了。完成开发后，合并分支即可。</p>
+<p>由于，git分支的创建、合并、删除都十分快；所以git鼓励我们使用分支开发，因为这样更加的安全，但是速度并不会影响跟直接在master上开发没有区别。</p>
+<h2 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h2><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><code>git log</code>查看提交记录</li>
+<li><code>git reflog</code>查看命令记录</li>
+<li><code>git reset --hard commit-id</code>恢复到指定版本</li>
+<li><code>git checkout -- filename</code>恢复文件的工作状态</li>
+<li><code>git branch</code>查看分支</li>
+<li><code>git branch &lt;name&gt;</code>创建分支</li>
+<li><code>git checkout &lt;name&gt;</code>切换分支</li>
+<li><code>git checkout -b &lt;name&gt;</code>创建+切换分支</li>
+<li><code>git merge &lt;name&gt;</code>合并某分支到当前分支</li>
+<li><code>git branch -d &lt;name&gt;</code>删除分支</li>
+</ul>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

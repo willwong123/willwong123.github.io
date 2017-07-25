@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Javascript返回值</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="javascript的返回值javascript的返回值是作为一个函数执行完成之后，返回出来的一个结果，并且只能有一个结果，并且肯定会返回一个结果。如果没有设置返回值的情况下，他也是会返回一个值，不过这个是undefined。
+如果需要这个返回值的时候，使用return可以调取到返回值。
+funct">
+  
+
+  <meta property="og:title" content="Javascript返回值"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Javascript返回值
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-08-08T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-08-09
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="javascript的返回值"><a href="#javascript的返回值" class="headerlink" title="javascript的返回值"></a>javascript的返回值</h2><p>javascript的返回值是作为一个函数执行完成之后，返回出来的一个结果，并且只能有一个结果，并且肯定会返回一个结果。如果没有设置返回值的情况下，他也是会返回一个值，不过这个是undefined。</p>
+<p>如果需要这个返回值的时候，使用return可以调取到返回值。</p>
+<pre><code>function show() {
+    return a;
+}
+alert (show());
+</code></pre><p>可以看到返回了a</p>
+<p>除此之外，在return的时候，还能进行数学计算。</p>
+<pre><code>function show(a,b) {
+    return a+b;
+}
+alert (show(1,2));
+</code></pre><p>这时候返回的值就是3了。</p>
+<p>还有一种情况，<code>return=false</code>是函数的终止符，能阻止一些事件的默认行为。当函数执行到这里的时候，函数将结束。</p>
+<p>例如，a标签的默认行为是打开一个链接，如果a的click事件中包含了return=false，那么a的打开链接将会被阻止，就不会打开该链接！</p>
+<h2 id="函数获取其他函数的返回值"><a href="#函数获取其他函数的返回值" class="headerlink" title="函数获取其他函数的返回值"></a>函数获取其他函数的返回值</h2><p>有时候，一个函数的执行需要要用到另一个函数的返回值，就需要执行的时候进行获取别人的返回值了。</p>
+<pre><code>function sum(a,b){
+    var c = a+b;
+    return c;
+}
+function clear(value){
+    alert(value);
+}
+clear(sum(1,2));
+</code></pre><p>clear(sum(1,2))就实现了clear函数调用sum函数的返回值了。</p>
+<h2 id="arguments对象"><a href="#arguments对象" class="headerlink" title="arguments对象"></a>arguments对象</h2><p>arguments对象是这个函数的不定参，就是不需要知道函数的参数，也能进行调用。arguments[0]就是调取函数的第一个参数，同理arguments[1]就是第二个参数。</p>
+<pre><code>多个参数求和操作：
+function sum() {
+    var i=0,result=0;
+    for (i;i&lt;arguments.length;i++) {
+        result += arguments[i];
+    }
+    return result;
+}
+alert (sum(1,2,3,4,5));
+</code></pre><p>可以看到返回的是15，也就是全部参数的和。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

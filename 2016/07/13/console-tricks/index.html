@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Console调试技巧</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="Console调试技巧原文地址：[Beyond Console Debugging Tricks](https://medium.com/outsystems-experts/beyond-console-debugging-tricks-f7d0d7f5df4)
+我一直都不认为自己是一个吹毛求疵都">
+  
+
+  <meta property="og:title" content="Console调试技巧"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Console调试技巧
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2016-07-12T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2016-07-13
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="Console调试技巧"><a href="#Console调试技巧" class="headerlink" title="Console调试技巧"></a>Console调试技巧</h1><pre><code>原文地址：[Beyond Console Debugging Tricks](https://medium.com/outsystems-experts/beyond-console-debugging-tricks-f7d0d7f5df4)
+</code></pre><p>我一直都不认为自己是一个吹毛求疵都人。直到有一天，我看到了本应该从Javascript中移除掉的console.log()！所有跟我工作过的同事都知道有多烦我。</p>
+<p>不到万不得已，尽量都不用使用这个语句，尤其是你在一个很大的团队中。把这些调试语句留在代码中简直是对他们的大不敬。</p>
+<p>所以我一直都像防鼠疫一样避免使用console.log()，我都记不清上一次使用它是什么时候了，有好几年了。希望就在前方！</p>
+<p>…省略废话500字</p>
+<h2 id="Console-方法"><a href="#Console-方法" class="headerlink" title="Console 方法"></a>Console 方法</h2><p><strong>重要</strong>：如果你想加快调试速度，Console API就是你需要的方案。下面是一些示例：</p>
+<h3 id="Trace"><a href="#Trace" class="headerlink" title="Trace"></a>Trace</h3><p>console.trace() 可以用来跟踪你的方法，可以看到从什么时候开始，到什么时候结束都能看的清清楚楚。</p>
+<p><img src="/pic/console-tricks/trace.png" alt="console.trace()"></p>
+<h3 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h3><p>这是我最喜欢的一个方法。</p>
+<p>console.table()可以得到一个非常友好的输出一个Object或者Array展示出来。所以赶紧替换掉原先的console.log()，省掉原来需要一层一层点击展开的那些浪费时间的操作。</p>
+<p><img src="/pic/console-tricks/table.png" alt="console.table()"></p>
+<h3 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h3><p>当你需要知道一段代码执行了多长时间的时候，该咋办呢？我曾经看到过各种各样的奇奇怪怪的调试方法，其实根本不需要那些。需要的仅仅是用console.time()启动一个计时器，并且在结束点使用console.timeEnd()来结束这个计时器。</p>
+<p><img src="/pic/console-tricks/time.png" alt="console.time()"></p>
+<h3 id="Dir"><a href="#Dir" class="headerlink" title="Dir"></a>Dir</h3><p>console.dir()用来查看一个Object的属性。它会把Object的所有属性全部罗列出来。</p>
+<p><img src="/pic/console-tricks/dir.png" alt="console.dir()"></p>
+<h2 id="Extra-Tips"><a href="#Extra-Tips" class="headerlink" title="Extra Tips"></a>Extra Tips</h2><h3 id="快速定位一个方法进行调试"><a href="#快速定位一个方法进行调试" class="headerlink" title="快速定位一个方法进行调试"></a>快速定位一个方法进行调试</h3><p>当在资源中有太多的资源，Ctrl-Shift+f没办法很快的定位到要调试的方法时。这个方法就非常有用。用<code>debug(functionName)</code>把方法包裹起来后，在执行到这个方法的时候，就会唤起调试模式。</p>
+<p><img src="/pic/console-tricks/debug.png" alt="debug()"></p>
+<h3 id="监视函数的参数"><a href="#监视函数的参数" class="headerlink" title="监视函数的参数"></a>监视函数的参数</h3><p>当你想要监视是哪些参数传到了特定的函数中，但是又不想在代码中加入一些调试代码时。这时使用<code>monitor(functionName)</code>就可以查看到这些参数。</p>
+<p><img src="/pic/console-tricks/monitor.png" alt="monitor()"></p>
+<h3 id="调试iframe中的代码"><a href="#调试iframe中的代码" class="headerlink" title="调试iframe中的代码"></a>调试iframe中的代码</h3><p>我经常看到有人为了调试iframe中的代码而将这个iframe在一个新的标签页中打开。但是有些时候，可能需要用到父级上下文的时候，就不得不添加很多数据在console面板中。</p>
+<p><img src="/pic/console-tricks/iframe.png" alt="iframe"></p>
+<p>这些都是落后的方案，并且现在有一个非常简单的解决方法。在console面板中有一个下拉选项，列出了页面中加载好的document，可以很容易的选择调试哪个。</p>
+<p>以上是我们能够保证代码干净整洁而使用的一些调试技巧。我们还有更多的技巧，后面会逐步分享出来，谢谢！</p>
+<h2 id="编者注"><a href="#编者注" class="headerlink" title="编者注"></a>编者注</h2><p>发布一个星期了，我觉得有必要声明一点：上面这些例子都是在浏览器中使用的，没有需要添加到javascript文件中的。我的目的不是用一些不是太坏的代码替换坏代码！</p>
+<p>文中的思路是提供一个可替换方案，就像杀鸡焉用宰牛刀。而不是所有的调试都是简单粗暴的console.log().</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>vim中vundle插件使用</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="之前一直用的vim插件都是在vim.org上直接找来，放到文件夹中，时间一长就不记得装过什么插件了，以致于这几天想要重新优化一下配置，发现根本没处下手。心一横，直接删除程序重新安装，重新配置。
+自从有了github之后，官网上的插件使用说明也不经常更了，基本上全部移到了github上。
+下载插件于是">
+  
+
+  <meta property="og:title" content="vim中vundle插件使用"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        vim中vundle插件使用
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-08-09T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-08-10
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>之前一直用的vim插件都是在<a href="http://www.vim.org" target="_blank" rel="external">vim.org</a>上直接找来，放到文件夹中，时间一长就不记得装过什么插件了，以致于这几天想要重新优化一下配置，发现根本没处下手。心一横，直接删除程序重新安装，重新配置。</p>
+<p>自从有了<a href="http://github.com" target="_blank" rel="external">github</a>之后，官网上的插件使用说明也不经常更了，基本上全部移到了github上。</p>
+<h2 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h2><p>于是直接到github上搜vundle，看看他下面的说明文档中，把示例的配置拷贝到<strong>_vimrc</strong>中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&quot; The following are examples of different formats supported.</div><div class="line">&quot; Keep Plugin commands between vundle#begin/end.</div><div class="line">&quot; plugin on GitHub repo</div><div class="line">Plugin &apos;tpope/vim-fugitive&apos;</div><div class="line">&quot; plugin from http://vim-scripts.org/vim/scripts.html</div><div class="line">Plugin &apos;L9&apos;</div><div class="line">&quot; Git plugin not hosted on GitHub</div><div class="line">Plugin &apos;git://git.wincent.com/command-t.git&apos;</div><div class="line">&quot; git repos on your local machine (i.e. when working on your own plugin)</div><div class="line">Plugin &apos;file:///home/gmarik/path/to/plugin&apos;</div><div class="line">&quot; The sparkup vim script is in a subdirectory of this repo called vim.</div><div class="line">&quot; Pass the path to set the runtimepath properly.</div><div class="line">Plugin &apos;rstacruz/sparkup&apos;, &#123;&apos;rtp&apos;: &apos;vim/&apos;&#125;</div><div class="line">&quot; Avoid a name conflict with L9</div><div class="line">Plugin &apos;user/L9&apos;, &#123;&apos;name&apos;: &apos;newL9&apos;&#125;</div></pre></td></tr></table></figure>
+<h2 id="配置安装方式"><a href="#配置安装方式" class="headerlink" title="配置安装方式"></a>配置安装方式</h2><p>保留其余必须的配置，删除了上面这一段示例配置。</p>
+<p>示例中展示了4中安装方式：</p>
+<ul>
+<li>“tpope/vim-fugitive” 直接从github上下载</li>
+<li>“L9” 从<a href="http://vim-srcirpts.org/vim/srcirpts.html上下载" target="_blank" rel="external">http://vim-srcirpts.org/vim/srcirpts.html上下载</a></li>
+<li>“git://git.wincent.com/command-t.git” 从其他git仓库中下载</li>
+<li>“file:///home/local/Plugins” 安装本地的插件</li>
+</ul>
+<p>由于公司网络是很蛋疼的代理上网，想要vundle直接从github上下载插件安装接本上是不可能的，报错！</p>
+<p>没办法只能自己手动下载到本地，然后使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Plugin &quot;file:///D:/example/Vim/vimfiles/bundle/Vundle&quot;</div></pre></td></tr></table></figure>
+<p>这种本地github仓库里的repo了。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>配好了之后，重新启动vim，输入<strong>:PluginInstall</strong>就可以看到已经在安装了。安装完成之后会在每一个Plugin之前显示一个”<strong>+</strong>“，如果失败了会是”<strong>!</strong>“</p>
+<p>上周五也是这样配置的，不清楚究竟是什么地方写错了什么，一直报错！今天一过来一安装就成功，奇了怪了！</p>
+<p>此外，还有</p>
+<ul>
+<li><strong>PluginList</strong>查看已经安装的插件，</li>
+<li><strong>PluginClean</strong>删除没有用的插件，后面添加<strong>!</strong>会全部删除，</li>
+<li><strong>PluginSearch foo</strong>查找foo插件，添加<strong>!</strong>可以强制刷新本地缓存，</li>
+<li><strong>PluginInstall</strong>后面添加<strong>!</strong>就跟<strong>PluginUpdate</strong>一样可以升级插件</li>
+</ul>
+<h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><ol>
+<li>直接配置使用”tpope/vim-fugitive”从git上下载插件的话，还需要把git加入环境变量中，不然进行<strong>PluginInstall</strong>的时候会报”git不是命令“。”D:/program/git/cmd“加入PATH中即可。</li>
+<li>想找个办法解决vundle从github安装插件时，git的配置代理方式，一直都没有找到…</li>
+<li>使用vundle的优势很明显，即使以后需要换机器或者是需要保存备份，只需要保存配置文件就可以了。</li>
+</ol>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>CommonJS与AMD的接触</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="当提到模块话的时候，CMD和AMD概念肯定会被提到，当然他们两个都是做模块化加载。但是也有区别，下面只是我的一些简单理解，有不完善的地方，希望得到你的指正。
+CommonJS更多的是用在服务端，比如：NodeJS就遵循CommonJS的规范；AMD更多的用在浏览器应用上，比如：常用的requirej">
+  
+
+  <meta property="og:title" content="CommonJS与AMD的接触"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        CommonJS与AMD的接触
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-09-15T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-09-16
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>当提到模块话的时候，CMD和AMD概念肯定会被提到，当然他们两个都是做模块化加载。但是也有区别，下面只是我的一些简单理解，有不完善的地方，希望得到你的指正。</p>
+<p>CommonJS更多的是用在服务端，比如：<code>NodeJS</code>就遵循CommonJS的规范；AMD更多的用在浏览器应用上，比如：常用的<code>requirejs</code>。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>CommonJS的主要语法，只有一下两个，<code>require()</code>和<code>module</code>。</p>
+<ul>
+<li>require()方法，用来获取当前模块需要导入的模块</li>
+<li>module对象，用来从当前模块导出这个对象</li>
+</ul>
+<p>AMD的语法</p>
+<pre><code>define(id?: String,dependencies?: String[],factory?: Function|Object)
+</code></pre><ul>
+<li><code>id</code>是给当前模块的命名，可选</li>
+<li><code>dependencies</code>定义依赖的模块名称，多个以数组保存。如果为空，则默认值<code>[&#39;require&#39;,&#39;exports&#39;,&#39;module&#39;]</code></li>
+<li><code>factory</code>是整个模块的定义。如果是一个函数方法，那么这个return出来的就是这个方法的运行结果。</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p><code>module.export</code>导出当前模块。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// hello.js</div><div class="line">var say = &quot;hello&quot;;</div><div class="line">module.export = say;</div></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// name.js</div><div class="line">var name = &quot;world&quot;;</div><div class="line">module.export = name;name</div></pre></td></tr></table></figure>
+</code></pre><p><code>require()</code>可以导入之前定义好的模块。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// app.js</div><div class="line">var say = require(&quot;./hello&quot;);</div><div class="line">var name = require(&quot;./name&quot;);</div><div class="line">var result = say + name;</div><div class="line">module.export = result;</div></pre></td></tr></table></figure>
+</code></pre><p>app.js模块导出的结果就是<code>result</code>，也就是<code>hello world</code>。</p>
+<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(&apos;myModule&apos;,[&apos;jquery&apos;,&apos;./math&apos;],function($,math)&#123;</div><div class="line">	var result = function()&#123;</div><div class="line">		// code here</div><div class="line">	&#125;</div><div class="line">	return result;result</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</code></pre><p>定义一个模块名字叫<code>myModule</code>，模块依赖于<code>jquery</code>和<code>math</code>两个模块，模块的导出值是<code>result</code>。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

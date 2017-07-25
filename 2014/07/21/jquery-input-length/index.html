@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>jQuery来判断textarea文本输入框中内容长度</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="在html页面中经常会遇到类似于微博这样的发布窗口，在你输入一个内容之后，他会立刻计算出内容长度以及剩余可输入内容的长度。今天正好遇到这个问题，试着解决一下。
+在原生javascript中，可以用onpropertychange来监测对象属性变化时触发事件，并且这个还是IE8及之前版本才能使用的。
+">
+  
+
+  <meta property="og:title" content="jQuery来判断textarea文本输入框中内容长度"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        jQuery来判断textarea文本输入框中内容长度
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-07-20T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-07-21
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>在html页面中经常会遇到类似于微博这样的发布窗口，在你输入一个内容之后，他会立刻计算出内容长度以及剩余可输入内容的长度。今天正好遇到这个问题，试着解决一下。</p>
+<p>在原生javascript中，可以用<code>onpropertychange</code>来监测对象属性变化时触发事件，并且这个还是IE8及之前版本才能使用的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">document.getElementById(&quot;#textarea-id&quot;).attachEvent(&quot;onpropertychange&quot;,function()&#123;</div><div class="line">    /* code here*/</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>类似的，在jquery中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;#textarea-id&quot;).bind(&quot;propertychange&quot;,function()&#123;</div><div class="line">    /* code here */</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>由于propertychange是IE8及之前版本才能使用的，那么在现在更多人使用chrome，firefox以及IE11的情况下，便要用到<code>oninput</code>了。</p>
+<p><code>oninput</code>跟<code>onpropertychange</code>是同样的道理，只不过它是用在更新的浏览器中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&quot;#textarea-id&quot;).bind(&quot;input propertychange&quot;,function()&#123;</div><div class="line">    /* code here */</div><div class="line">&#125;)</div><div class="line">//这样就能在浏览器中做到兼容了</div></pre></td></tr></table></figure>
+<p>解决了这个输入时触发事件的问题，接下来就该考虑解决字数统计的方法了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function textLength(obj,obj-num,max-num) &#123;</div><div class="line">    obj.bind(&quot;input propertychange&quot;,function()&#123;</div><div class="line">        var len = obj.val().length;</div><div class="line">        if (len &lt; max-num) &#123;</div><div class="line">            obj-num.text(len);</div><div class="line">        &#125; else &#123;</div><div class="line">            var nlen = obj.val().substring(0,max-num);</div><div class="line">            obj-num.text(nlen);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>将上面的事件和方法合并起来，就能实现在textarea中输入内容，显示内容长度及剩余可输入内容长度了。</p>
+<p><strong>注意</strong>:<code>onpropertychange()</code>和<code>onchange()</code>两个事件并不是一样的。</p>
+<p><code>onchange()</code>事件是要在对象失去焦点的时候，才会触发；而且对于是由js导致的改变是不会触发的。</p>
+<p><code>onpropretychange()</code>是有一个属性，只要有变化就会触发，但是在表单被设置为<code>disable = true</code>时是不会触发的。</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

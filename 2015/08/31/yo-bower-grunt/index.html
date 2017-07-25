@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>前端工具yo+bower+grunt自动化</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="以前开发一套页面的时候，总要花点时间去准备思考文档目录结构怎么构建。虽然可能有一套大家默认的结构，样式文件就放在css目录，教程就放在js目录。但是有会出现另一个问题，这些静态资源在上线的时候需要压缩，输出的方法再单独重新压缩？
+现在的整合这些应该就是以前开发中的步骤。每个步骤都是单独的，互相独立的">
+  
+
+  <meta property="og:title" content="前端工具yo+bower+grunt自动化"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        前端工具yo+bower+grunt自动化
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2015-08-30T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2015-08-31
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <p>以前开发一套页面的时候，总要花点时间去准备思考文档目录结构怎么构建。虽然可能有一套大家默认的结构，样式文件就放在css目录，教程就放在js目录。但是有会出现另一个问题，这些静态资源在上线的时候需要压缩，输出的方法再单独重新压缩？</p>
+<h2 id="现在的整合"><a href="#现在的整合" class="headerlink" title="现在的整合"></a>现在的整合</h2><p>这些应该就是以前开发中的步骤。每个步骤都是单独的，互相独立的，每次这些事情也都会占用我们这些本来不多的切图时间。更有说不定的，不太会用，导致这些时间占了大头！</p>
+<p>所以，当nodejs火起来，这些问题也可以得到解决了。让我们可以很多时间去做我们该做的事，让这些复杂，没有技术含量的活交给计算机程序。</p>
+<h2 id="前端开发自动化"><a href="#前端开发自动化" class="headerlink" title="前端开发自动化"></a>前端开发自动化</h2><p>此时，yeoman, bower, grunt等一套工具就出现了。必然的，都是依赖于nodejs。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先要在电脑上安装nodejs，这里不多说，自行搜索。</p>
+<p>接着用npm安装上面说的这些工具</p>
+<blockquote>
+<p>npm install -g yo bower grunt-cli</p>
+</blockquote>
+<p>这里的安装都是全局的，不过光安装这些还不够。yo只是一套脚手架，具体你找搭出什么形状的还需要一个生成器<strong>generator</strong>，在yo网站上可以看到很多目前已经存在的<strong>generators</strong>，我们可以根据实际需要选择安装。<br>例如: 要安装一套bootstrap的脚手架</p>
+<blockquote>
+<p>npm install -g generator-bootstrap</p>
+</blockquote>
+<p>这样就安装好了bootstrap的样式了，接着就在自己的文件目录下面执行<strong>yo bootstrap</strong>就可以在当前目录下生成一套以bootstrap构建的文件了，接着会自动安装需要的文件。完成之后，里面会出现bower_modules和node_modules两个文件夹，这里面都是需要的文件。</p>
+<p>如果我们不需要再添加什么插件了，就可以跳过bower了，直接输入<strong>grunt serve</strong>，就可以在看到在浏览器中打开了我们部署的文件。</p>
+<p>可以看到，grunt执行了压缩，打包，校验等等工作，并实时刷新页面。</p>
+<p>接下来就可以自由开发了！</p>
+<p><em>注:具体自定义的生成和具体的各个工具的使用未说</em></p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

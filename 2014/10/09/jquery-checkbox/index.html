@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>JQuery1.9.1针对checkbox的调整</title>
+  <meta name="author" content="wh.wangh">
+   <meta name="description" content="checkbox全选的不能实现了由于最近的一个项目用bootstrap创建，所以用了较高版本的jquery。我还理所当然的使用以前的1.7.2版本jquery下的全选代码段，结果一运行，妈的不能全选了，明明是true的为什么会不执行呢？这时候问题来了……
+jquery1.8.x对于checkbox的">
+  
+
+  <meta property="og:title" content="JQuery1.9.1针对checkbox的调整"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="HOME"/>
+ <meta property="og:image" content="undefined"/>
+  
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="HOME" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id='wx_pic' style='display:none;'><img src='/wx_share.png'/></div>
+  <div id="main">
+    <div class="behind">
+      <div class="back">
+        <a href="/" class="black-color"><i class="fa fa-times" aria-hidden="true"></i></a>
+      </div>
+      <div class="description">
+        &nbsp;TO BE STRONGER
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard article">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        JQuery1.9.1针对checkbox的调整
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2014-10-08T16:00:00.000Z">
+  <i class="fa fa-calendar"></i>&nbsp;
+  2014-10-09
+</time>
+
+
+
+
+
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h2 id="checkbox全选的不能实现了"><a href="#checkbox全选的不能实现了" class="headerlink" title="checkbox全选的不能实现了"></a>checkbox全选的不能实现了</h2><p>由于最近的一个项目用bootstrap创建，所以用了较高版本的jquery。我还理所当然的使用以前的1.7.2版本jquery下的全选代码段，结果一运行，妈的不能全选了，明明是true的为什么会不执行呢？这时候问题来了……</p>
+<h2 id="jquery1-8-x对于checkbox的调整"><a href="#jquery1-8-x对于checkbox的调整" class="headerlink" title="jquery1.8.x对于checkbox的调整"></a>jquery1.8.x对于checkbox的调整</h2><pre><code>在jquery1.8.*的时候就已经对checkbox的选中进行了调整：
+</code></pre><p>判断是否选中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#checkbox'</span>).prop(<span class="string">'checked'</span>)</div></pre></td></tr></table></figure>
+<p>设置选中与不选中状态：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#checkbox'</span>).attr(<span class="string">'checked'</span>,<span class="literal">true</span>)</div><div class="line">$(<span class="string">'#checkbox'</span>).attr(<span class="string">'checked'</span>,<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<h2 id="jquery1-9-1不一样处理"><a href="#jquery1-9-1不一样处理" class="headerlink" title="jquery1.9.1不一样处理"></a>jquery1.9.1不一样处理</h2><p>素不知1.8.*的方法在1.9.1中也已经不再适。IE10，Chrome，FF中，对于选中状态，第一次$(‘#checkbox’).attr(‘checked’,true)可以实现。然后清除选中，再次点击的时候，就没有效果了。</p>
+<p>在ie8以下不存在这个问题！</p>
+<p>后来查了一下才发现，原来的<code>attr(&#39;checked&#39;,true)</code>都换成<code>prop(&#39;checked&#39;,true)</code>了。</p>
+<p>好好学吧，路还长~</p>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer">
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>
